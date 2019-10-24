@@ -11,7 +11,7 @@
     "test:watch": "jest --watch ./rbac/src/",
     "doc": "babel-node ./node_modules/gulp/bin/gulp.js doc",
     "docs:build": "documentation build src/** -f html -o docs",
-    "build": "babel ./rbac/src --out-dir ./dist --source-maps --copy-files",
+    "build": "babel ./rbac-plugin-node/src --out-dir ./dist --source-maps --copy-files",
     "compile": "babel src --out-dir .compiled --source-maps --watch",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ext .js ."
   },
@@ -24,6 +24,7 @@
     "dotenv": "^8.1.0",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.14",
+    "node-cache": "^5.0.0",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "readline-sync": "^1.2.21",

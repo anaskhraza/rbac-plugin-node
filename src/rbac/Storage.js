@@ -6,17 +6,21 @@ import type RBAC from "./RBAC";
 import db from "./models";
 import RoleServices from "./services/RolesServices";
 import PermissionServices from "./services/PermissionServices";
+import NodeCache from 'node-cache';
 
 export default class Storage {
-  static useRBAC(rbac: RBAC): void {
+  static useRBAC(rbac) {
     if (this.rbac) {
       throw new Error(
         "Storage is already in use with another instance of RBAC"
       );
     }
+    
+    const cache = new NodeCache();
     this.db = db;
-    this.roleServices = new RoleServices(this.db.roles);
-    this.permissionServices = new PermissionServices(this.db);
+    this.cache = cache;
+    this.roleServices = new RoleServices(this.db,  this.cache);
+    this.permissionServices = new PermissionServices(this.db  this.cache);
     this.rbac = rbac;
   }
 

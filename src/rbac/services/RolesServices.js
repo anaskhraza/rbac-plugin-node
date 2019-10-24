@@ -1,9 +1,11 @@
 import RolesRepository from "../repository/RolesRepository";
 
 class RolesServices {
-  constructor(roles) {
-    this.RolesRepository = new RolesRepository(roles);
+  constructor(db, cache) {
+    this.database = db;
 
+    this.RolesRepository = new RolesRepository(db.roles, cache);
+    
     this.getAllRoles = this.getAllRoles.bind(this);
   }
 

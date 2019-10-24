@@ -25,13 +25,13 @@ export default class RBAC {
    * @return {string[]}
    * @static
    */
-  static getPermissionNames(roleName, permissions, delimiter: string): string[] {
+  static getPermissionNames(permissions, delimiter: string): string[] {
     if (!delimiter) {
       throw new Error('Delimiter is not defined');
     }
 
     return permissions.map(
-      permission => Permission.createName(roleName, permission[0], permission[1], delimiter),
+      permission => Permission.createName(permission[0], permission[1], delimiter),
     );
   }
 
@@ -414,7 +414,7 @@ export default class RBAC {
     const can = await this.traverseGrants(roleName, (item) => {
       console.log("can1", (item instanceof Permission), item)
 
-      if(Permission.can([roleName, action, resource], item)) {
+      if(Permission.can([action, resource], item)) {
         return true;
       }
     });
@@ -432,7 +432,7 @@ export default class RBAC {
    */
   async canAny(roleName: string, permissions: Object[]): boolean {
     // prepare the names of permissions
-    const permissionNames = RBAC.getPermissionNames(roleName, permissions, this.options.delimiter);
+    const permissionNames = RBAC.getPermissionNames(permissions, DEFAULT_OPTIONS.delimiter);
 
     // traverse hierarchy
     const can = await this.traverseGrants(roleName, (item) => {
@@ -455,7 +455,7 @@ export default class RBAC {
    */
   async canAll(roleName: string, permissions: Object[]) {
     // prepare the names of permissions
-    const permissionNames = RBAC.getPermissionNames(roleName, permissions, this.options.delimiter);
+    const permissionNames = RBAC.getPermissionNames(permissions, DEFAULT_OPTIONS.delimiter);
     const founded = {};
     let foundedCount = 0;
 
@@ -489,6 +489,7 @@ export default class RBAC {
     }
 
     const has = await this.traverseGrants(roleName, (item) => {
+      
       if (item instanceof Role && item.name === roleChildName) {
         return true;
       }
@@ -510,7 +511,7 @@ export default class RBAC {
 
     // traverse hierarchy
     await this.traverseGrants(roleName, (item) => {
-      if (item instanceof Permission && !scope.includes(item.name)) {
+      if (!scope.includes(item.name)) {
         scope.push(item.name);
       }
     });

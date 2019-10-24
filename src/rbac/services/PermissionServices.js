@@ -2,9 +2,9 @@ import PermissionRepository from "../repository/PermissionRepository";
 import { permissionsDTO } from '../DTO/rbac';
 
 class PermissionServices {
-  constructor(db) {
+  constructor(db, cache) {
     this.database = db;
-    this.PermissonRepository = new PermissionRepository(db.permissions);
+    this.PermissonRepository = new PermissionRepository(db.permissions, cache);
 
     this.getAllPermissions = this.getAllPermissions.bind(this);
     this.getUserSpecificPermission = this.getUserSpecificPermission.bind(this);

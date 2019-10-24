@@ -1,21 +1,21 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { RBAC } from "./rbac/index";
+// import { RBAC } from "./rbac/index";
 
-const rbac = new RBAC();
+// const rbac = new RBAC();
 
 // rbac.can("1", "view", "home").then( can => {
 //     console.log("can CHeck", can);
 // })
 
-rbac.canAny("1", [["view", "home"], ["edit", "home"]]).then( can => {
-    console.log("can CHeck", can);
-})
+// rbac.canAny("1", [["view", "home"], ["edit", "home"]]).then( can => {
+//     console.log("can CHeck", can);
+// })
 const http = require('http');;
 
 // your cus",tom controller for express//   res.send('Hello admin');
-}
-: const app = express();
+
+const app = express();
 
 const apiRouter = require('./routes')(express);
 

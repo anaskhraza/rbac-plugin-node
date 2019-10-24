@@ -13,7 +13,6 @@ export default class Permission extends Base {
    * @static
    */
   static createName(
-    roleName: string,
     action: string,
     resource: string,
     delimiter: string
@@ -30,7 +29,7 @@ export default class Permission extends Base {
       throw new Error("Resource is not defined");
     }
 
-    return `${roleName}${delimiter}${action}${delimiter}${resource}`;
+    return `${action}${delimiter}${resource}`;
   }
 
   static decodeName(name: string, delimiter: string): Object {
