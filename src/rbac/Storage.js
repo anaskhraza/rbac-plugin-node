@@ -20,7 +20,7 @@ export default class Storage {
     this.db = db;
     this.cache = cache;
     this.roleServices = new RoleServices(this.db,  this.cache);
-    this.permissionServices = new PermissionServices(this.db  this.cache);
+    this.permissionServices = new PermissionServices(this.db, this.cache);
     this.rbac = rbac;
   }
 

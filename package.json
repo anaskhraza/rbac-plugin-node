@@ -6,8 +6,8 @@
   "scripts": {
     "prepublish": "npm run build",
     "start": "babel-node ./src/index.js",
-    "test": "jest ./rbac/src/",
-    "test:coverage": "jest --coverage ./rbac/src/",
+    "test": "jest ./rbac-plugin-node/src/",
+    "test:coverage": "jest --coverage ./rbac-plugin-node/src/",
     "test:watch": "jest --watch ./rbac/src/",
     "doc": "babel-node ./node_modules/gulp/bin/gulp.js doc",
     "docs:build": "documentation build src/** -f html -o docs",

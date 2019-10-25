@@ -4,11 +4,6 @@ class RolesRepository extends Repository {
   constructor(roles, cache) {
     super(roles);
 
-    if(cache) {
-    this.cache = cache;
-    const roles = this.getAllRoles();
-    this.cache.set("roles", roles, 1000000);
-    }
   }
 
   async getAllRoles(name) {

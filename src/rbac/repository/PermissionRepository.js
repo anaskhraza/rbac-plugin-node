@@ -4,18 +4,7 @@ import Sequelize from "sequelize";
 class PermissionRepository extends Repository {
   constructor(permissions, cache) {
     super(permissions);
-
-    if(cache) {
-
-      this.cache = cache;
-      const permissions = this.getAllPermissions();
-      const rolePermissions = this.getAllUserSpecificPermission();
-      this.cache.mset([
-        {key: "permissions", val: permissions, ttl: 100000},
-        {key: "rolepermissions", val: rolePermissions, ttl: 100000},
-      ]);
-      
-    }
+    
   }
 
   async getAllPermissions() {
@@ -29,7 +18,7 @@ class PermissionRepository extends Repository {
   }
 
   async getAllUserSpecificPermission(models) {
-    console.log("permissions ", "get All permissions", role);
+    // console.log("permissions ", "get All permissions", role);
     try {
       return await models.user_permissions.findAll({
         include: [
